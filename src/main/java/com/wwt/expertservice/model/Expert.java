@@ -1,6 +1,5 @@
 package com.wwt.expertservice.model;
 
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -11,8 +10,8 @@ import java.util.Arrays;
 @Document("Expert")
 public class Expert implements Serializable {
     @Id
-    @Field("id")
-    private String expert_id;
+    @Field("expertId")
+    private String expertId;
     @Field("department")
     private String department;
     @Field("profile")
@@ -21,23 +20,23 @@ public class Expert implements Serializable {
     private String phone;
     @Field("field")
     private String[] field;
-    @Field("paper_number")
-    private String[] paper_number;
-    @Field("is_certificated")
-    private boolean is_certificated;
+    @Field("paperNumber")
+    private String[] paperNumber;
+    @Field("isCertificated")
+    private boolean isCertificated;
     @Field("name")
     private String name;
-    @Field("e_mail")
+    @Field("email")
     private String email;
     @Field("position")
     private String position;
 
-    public String getExpert_id() {
-        return expert_id;
+    public String getExpertId() {
+        return expertId;
     }
 
-    public void setExpert_id(String expert_id) {
-        this.expert_id = expert_id;
+    public void setExpertId(String expertId) {
+        this.expertId = expertId;
     }
 
     public String getDepartment() {
@@ -72,20 +71,20 @@ public class Expert implements Serializable {
         this.field = field;
     }
 
-    public String[] getPaper_number() {
-        return paper_number;
+    public String[] getPaperNumber() {
+        return paperNumber;
     }
 
-    public void setPaper_number(String[] paper_number) {
-        this.paper_number = paper_number;
+    public void setPaperNumber(String[] paperNumber) {
+        this.paperNumber = paperNumber;
     }
 
-    public boolean isIs_certificated() {
-        return is_certificated;
+    public boolean isCertificated() {
+        return isCertificated;
     }
 
-    public void setIs_certificated(boolean is_certificated) {
-        this.is_certificated = is_certificated;
+    public void setCertificated(boolean certificated) {
+        this.isCertificated = certificated;
     }
 
     public String getName() {
@@ -115,27 +114,27 @@ public class Expert implements Serializable {
 
     @Override
     public String toString() {
-        return "{\"Expert\":{"
-                + "\"expert_id\":\""
-                + expert_id + '\"'
-                + ",\"department\":\""
-                + department + '\"'
-                + ",\"profile\":\""
-                + profile + '\"'
-                + ",\"phone\":\""
-                + phone + '\"'
-                + ",\"field\":"
+        return "{Expert\':{"
+                + "\'expert_id\':\'"
+                + expertId + '\''
+                + ",\'department\':\'"
+                + department + '\''
+                + ",\'profile\':\'"
+                + profile + '\''
+                + ",\'phone\':\'"
+                + phone + '\''
+                + ",\'field\':"
                 + Arrays.toString(field)
-                + ",\"paper_number\":"
-                + Arrays.toString(paper_number)
-                + ",\"is_certificated\":"
-                + is_certificated
-                + ",\"name\":\""
-                + name + '\"'
-                + ",\"e_mail\":\""
-                + email + '\"'
-                + ",\"position\":\""
-                + position + '\"'
+                + ",\'paper_number\':"
+                + Arrays.toString(paperNumber)
+                + ",\'is_certificated\':"
+                + isCertificated
+                + ",\'name\':\'"
+                + name + '\''
+                + ",\'e_mail\':\'"
+                + email + '\''
+                + ",\'position\':\'"
+                + position + '\''
                 + "}}";
 
     }

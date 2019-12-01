@@ -27,8 +27,9 @@ public class ExpertController {
             Expert expert = JSON.toJavaObject(obj, Expert.class);
             expertRepository.insert(expert);
             params.put("success", true);
-            params.put("content", expert.toString());
+            params.put("content", expert);
         } catch (Exception e) {
+            System.out.println("ERROR" + e.getMessage());
             params.put("success", false);
             Map<String, Integer> contont = new HashMap<>();
             contont.put("error_code", 0);
@@ -78,7 +79,7 @@ public class ExpertController {
         Map<String, Object> params = new HashMap<>();
         try {
             if (domain == null) domain = "name";
-            if (sort == null) sort = "id";
+            if (sort == null) sort = "Id";
 
 
             Sort.Order order = new Sort.Order(Sort.Direction.ASC, sort);
