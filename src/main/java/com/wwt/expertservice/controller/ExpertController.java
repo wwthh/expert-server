@@ -32,9 +32,9 @@ public class ExpertController {
         } catch (Exception e) {
             System.out.println("ERROR" + e.getMessage());
             params.put("success", false);
-            Map<String, Integer> contont = new HashMap<>();
-            contont.put("error_code", 0);
-            params.put("contont", contont);
+            Map<String, Integer> content = new HashMap<>();
+            content.put("error_code", 0);
+            params.put("content", content);
         }
         return JSONObject.toJSONString(params);
     }
@@ -48,9 +48,9 @@ public class ExpertController {
             Expert expert = Oexpert.get();
             if (!Oexpert.isPresent()) {
                 params.put("success", false);
-                Map<String, Integer> contont = new HashMap<>();
-                contont.put("error_code", -1);
-                params.put("contont", contont.toString());
+                Map<String, Integer> content = new HashMap<>();
+                content.put("error_code", -1);
+                params.put("content", content.toString());
             } else {
                 params.put("success", true);
                 System.out.println(expert.toString());
@@ -58,9 +58,9 @@ public class ExpertController {
             }
         } catch (Exception e) {
             params.put("success", false);
-            Map<String, Integer> contont = new HashMap<>();
-            contont.put("error_code", 0);
-            params.put("contont", contont);
+            Map<String, Integer> content = new HashMap<>();
+            content.put("error_code", 0);
+            params.put("content", content);
         }
 
         return JSONObject.toJSONString(params);
@@ -117,32 +117,32 @@ public class ExpertController {
                     break;
                 default:
                     params.put("success", false);
-                    Map<String, Integer> contont = new HashMap<>();
-                    contont.put("error_code", 2);
-                    params.put("contont", contont);
+                    Map<String, Integer> content = new HashMap<>();
+                    content.put("error_code", 2);
+                    params.put("content", content);
                     return JSONObject.toJSONString(params);
             }
             assert experts != null;
             if (experts.isEmpty()) {
                 System.out.println("Get No Answer ");
                 params.put("success", false);
-                Map<String, Integer> contont = new HashMap<>();
-                contont.put("error_code", 1);
-                params.put("contont", contont);
+                Map<String, Integer> content = new HashMap<>();
+                content.put("error_code", 1);
+                params.put("content", content);
             } else {
                 System.out.println("Get! "+ experts);
                 params.put("success", true);
-                Map<String, Object> contont = new HashMap<>();
-                contont.put("total", count);
-                contont.put("papers", experts);
-                params.put("contont", contont);
+                Map<String, Object> content = new HashMap<>();
+                content.put("total", count);
+                content.put("papers", experts);
+                params.put("content", content);
             }
         } catch (Exception e) {
             System.out.println("ERROR! " + e.getMessage());
             params.put("success", false);
-            Map<String, Integer> contont = new HashMap<>();
-            contont.put("error_code", 0);
-            params.put("contont", contont);
+            Map<String, Integer> content = new HashMap<>();
+            content.put("error_code", 0);
+            params.put("content", content);
         }
 
 
