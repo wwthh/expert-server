@@ -7,34 +7,23 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.net.ContentHandler;
 import java.util.Optional;
 
 public interface ExpertRepository extends MongoRepository<Expert, String> {
 
 
-
-    Page<Expert> findByDepartmentLike(String key, Pageable pageable);
-
-    Page<Expert> findByProfileLike(String key, Pageable pageable);
-
     Page<Expert> findByNameLike(String key, Pageable pageable);
-
-    Page<Expert> findByPhone(String key, Pageable pageable);
-
-    Page<Expert> findByEmail(String key, Pageable pageable);
-
-    Page<Expert> findByPositionLike(String key, Pageable pageable);
-
-    int countByDepartmentLike(String key);
-
-    int countByPhoneLike(String key);
-
-    int countByProfileLike(String key);
 
     int countByNameLike(String key);
 
-    int countByEmailLike(String key);
+    Page<Expert> findByNormalizednameLike(String key, PageRequest pageable);
 
-    int countByPositionLike(String key);
+    int countByNormalizednameLike(String key);
+
+    Page<Expert> findByOrgLike(String key, PageRequest pageable);
+
+    int countByOrgLike(String key);
+
 
 }

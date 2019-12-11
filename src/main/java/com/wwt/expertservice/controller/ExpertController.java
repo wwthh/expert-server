@@ -53,7 +53,7 @@ public class ExpertController {
                 params.put("content", content.toString());
             } else {
                 params.put("success", true);
-                System.out.println(expert.toString());
+                System.out.println(expert);
                 params.put("content", expert);
             }
         } catch (Exception e) {
@@ -79,42 +79,31 @@ public class ExpertController {
         System.out.println("getExpertByPage");
         Map<String, Object> params = new HashMap<>();
         try {
-            if (domain == null) domain = "name";
-            if (sort == null) sort = "Id";
+            if (domain == null) domain = "normalizedname";
+            if (sort == null) sort = "name";
 
 
-            Sort.Order order = new Sort.Order(Sort.Direction.ASC, sort);
+            Sort.Order order = new Sort.Order(Sort.Direction.DESC, sort);
             if (!direction)
-                order = new Sort.Order(Sort.Direction.DESC, sort);
+                order = new Sort.Order(Sort.Direction.ASC, sort);
             PageRequest pageable = PageRequest.of(page - 1, size, Sort.by(order));
             int count = 0;
             List<Expert> experts = null;
             switch (domain) {
-                case "department":
-                    experts = expertRepository.findByDepartmentLike(key, pageable).getContent();
-                    count = expertRepository.countByDepartmentLike(key);
-                    break;
-                case "profile":
-                    experts = expertRepository.findByProfileLike(key, pageable).getContent();
-                    count = expertRepository.countByProfileLike(key);
-                    break;
-                case "phone":
-                    experts = expertRepository.findByPhone(key, pageable).getContent();
-                    count = expertRepository.countByPhoneLike(key);
-                    break;
                 case "name":
                     experts = expertRepository.findByNameLike(key, pageable).getContent();
                     count = expertRepository.countByNameLike(key);
                     break;
-                case "email":
-                case "e_mail":
-                    experts = expertRepository.findByEmail(key, pageable).getContent();
-                    count = expertRepository.countByEmailLike(key);
+                case "normalizedname":
+                    experts = expertRepository.findByNormalizednameLike(key, pageable).getContent();
+                    count = expertRepository.countByNormalizednameLike(key);
                     break;
-                case "position":
-                    experts = expertRepository.findByPositionLike(key, pageable).getContent();
-                    count = expertRepository.countByPositionLike(key);
+                case "org":
+                    experts = expertRepository.findByOrgLike(key, pageable).getContent();
+                    count = expertRepository.countByOrgLike(key);
                     break;
+
+
                 default:
                     params.put("success", false);
                     Map<String, Integer> content = new HashMap<>();

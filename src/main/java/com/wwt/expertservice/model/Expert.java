@@ -6,85 +6,69 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
 import java.util.Arrays;
+class Tag{
+    String t;
+    int w;
 
+    @Override
+    public String toString() {
+        return "{\'Tag\':{"
+                + "\'t\':\'"
+                + t + '\''
+                + ",\'w\':"
+                + w
+                + "}}";
+
+    }
+}
+class Pub{
+    String i;
+    int r;
+
+    @Override
+    public String toString() {
+        return "{\'Pub\':{"
+                + "\'i\':\'"
+                + i + '\''
+                + ",\'r\':"
+                + r
+                + "}}";
+
+    }
+}
 @Document("Expert")
 public class Expert implements Serializable {
     @Id
-    @Field("expertId")
-    private String expertId;
-    @Field("department")
-    private String department;
-    @Field("profile")
-    private String profile;
-    @Field("phone")
-    private String phone;
-    @Field("field")
-    private String[] field;
-    @Field("paperNumber")
-    private String[] paperNumber;
-    @Field("isCertificated")
-    private boolean isCertificated;
+    @Field("id")
+    private String id;
     @Field("name")
     private String name;
-    @Field("email")
-    private String email;
+    @Field("normalized_name")
+    private String normalizedname;
+    @Field("orgs")
+    private String[] orgs;
+    @Field("org")
+    private String org;
     @Field("position")
     private String position;
+    @Field("n_pubs")
+    private int npubs;
+    @Field("n_citation")
+    private int ncitation;
+    @Field("h_index")
+    private int hindex;
+    @Field("tags")
+    private Tag[] tags;
+    @Field("pubs")
+    private Pub[] pubs;
 
-    public String getExpertId() {
-        return expertId;
+    
+    public String getId() {
+        return id;
     }
 
-    public void setExpertId(String expertId) {
-        this.expertId = expertId;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public String getProfile() {
-        return profile;
-    }
-
-    public void setProfile(String profile) {
-        this.profile = profile;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String[] getField() {
-        return field;
-    }
-
-    public void setField(String[] field) {
-        this.field = field;
-    }
-
-    public String[] getPaperNumber() {
-        return paperNumber;
-    }
-
-    public void setPaperNumber(String[] paperNumber) {
-        this.paperNumber = paperNumber;
-    }
-
-    public boolean isCertificated() {
-        return isCertificated;
-    }
-
-    public void setCertificated(boolean certificated) {
-        this.isCertificated = certificated;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -95,12 +79,28 @@ public class Expert implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getNormalizedname() {
+        return normalizedname;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNormalizedname(String normalizedname) {
+        this.normalizedname = normalizedname;
+    }
+
+    public String[] getOrgs() {
+        return orgs;
+    }
+
+    public void setOrgs(String[] orgs) {
+        this.orgs = orgs;
+    }
+
+    public String getOrg() {
+        return org;
+    }
+
+    public void setOrg(String org) {
+        this.org = org;
     }
 
     public String getPosition() {
@@ -111,34 +111,74 @@ public class Expert implements Serializable {
         this.position = position;
     }
 
+    public int getNpubs() {
+        return npubs;
+    }
+
+    public void setNpubs(int npubs) {
+        this.npubs = npubs;
+    }
+
+    public int getNcitation() {
+        return ncitation;
+    }
+
+    public void setNcitation(int ncitation) {
+        this.ncitation = ncitation;
+    }
+
+    public int getHindex() {
+        return hindex;
+    }
+
+    public void setHindex(int hindex) {
+        this.hindex = hindex;
+    }
+
+    public Tag[] getTags() {
+        return tags;
+    }
+
+    public void setTags(Tag[] tags) {
+        this.tags = tags;
+    }
+
+    public Pub[] getPubs() {
+        return pubs;
+    }
+
+    public void setPubs(Pub[] pubs) {
+        this.pubs = pubs;
+    }
 
     @Override
     public String toString() {
-        return "{Expert\':{"
-                + "\'expert_id\':\'"
-                + expertId + '\''
-                + ",\'department\':\'"
-                + department + '\''
-                + ",\'profile\':\'"
-                + profile + '\''
-                + ",\'phone\':\'"
-                + phone + '\''
-                + ",\'field\':"
-                + Arrays.toString(field)
-                + ",\'paper_number\':"
-                + Arrays.toString(paperNumber)
-                + ",\'is_certificated\':"
-                + isCertificated
+        return "{\'Expert\':{"
+                + "\'id\':\'"
+                + id + '\''
                 + ",\'name\':\'"
                 + name + '\''
-                + ",\'e_mail\':\'"
-                + email + '\''
+                + ",\'normalized_name\':\'"
+                + normalizedname + '\''
+                + ",\'orgs\':"
+                + Arrays.toString(orgs)
+                + ",\'org\':\'"
+                + org + '\''
                 + ",\'position\':\'"
                 + position + '\''
+                + ",\'n_pubs\':"
+                + npubs
+                + ",\'n_citation\':"
+                + ncitation
+                + ",\'h_index\':"
+                + hindex
+                + ",\'tags\':"
+                + Arrays.toString(tags)
+                + ",\'pubs\':"
+                + Arrays.toString(pubs)
                 + "}}";
 
     }
-
 }
 
 
