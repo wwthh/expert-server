@@ -14,12 +14,10 @@ import java.util.*;
 @RestController
 public class ExpertController {
 
-    final private String version = "/v1";
-
     @Autowired
     private ExpertRepository expertRepository;
 
-    @PostMapping(version + "/experts")
+    @PostMapping( "/experts")
     public String insertExpert(@RequestBody String requestbody) {
         System.out.println("insertExpert");
         Map<String, Object> params = new HashMap<>();
@@ -39,7 +37,7 @@ public class ExpertController {
         return JSONObject.toJSONString(params);
     }
 
-    @GetMapping(version + "/experts/{_id}")
+    @GetMapping("/experts/{_id}")
     public String getExpertById(@PathVariable(required = true) String _id, @RequestParam(name = "token", required = true) String token) {
         System.out.println("GetExpertById" + _id);
         Map<String, Object> params = new HashMap<>();
@@ -67,7 +65,7 @@ public class ExpertController {
     }
 
 
-    @GetMapping(version + "/experts")
+    @GetMapping("/experts")
     public String getExpertByPage(@RequestParam(name = "size", required = true) int size,// 每页数量
                                   @RequestParam(name = "page", required = true) int page, // 第几页
                                   @RequestParam(name = "domain", required = false) String domain, // 搜索字段 i.e. name
