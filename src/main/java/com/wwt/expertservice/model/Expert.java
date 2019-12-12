@@ -1,5 +1,6 @@
 package com.wwt.expertservice.model;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -12,12 +13,12 @@ class Tag{
 
     @Override
     public String toString() {
-        return "{\'Tag\':{"
-                + "\'t\':\'"
-                + t + '\''
-                + ",\'w\':"
+        return "{"
+                + "\"t\":\""
+                + t + '\"'
+                + ",\"w\":"
                 + w
-                + "}}";
+                + "}";
 
     }
 }
@@ -27,12 +28,12 @@ class Pub{
 
     @Override
     public String toString() {
-        return "{\'Pub\':{"
-                + "\'i\':\'"
-                + i + '\''
-                + ",\'r\':"
+        return "{"
+                + "\"i\":\""
+                + i + '\"'
+                + ",\"r\":"
                 + r
-                + "}}";
+                + "}";
 
     }
 }
@@ -48,11 +49,11 @@ public class Expert implements Serializable {
     @Field("org")
     private String org;
     @Field("n_pubs")
-    private int npubs;
+    private int n_pubs;
     @Field("n_citation")
-    private int ncitation;
+    private int n_citation;
     @Field("h_index")
-    private int hindex;
+    private int h_index;
     @Field("tags")
     private Tag[] tags;
     @Field("pubs")
@@ -92,28 +93,28 @@ public class Expert implements Serializable {
         this.org = org;
     }
 
-    public int getNpubs() {
-        return npubs;
+    public int getN_pubs() {
+        return n_pubs;
     }
 
-    public void setNpubs(int npubs) {
-        this.npubs = npubs;
+    public void setN_pubs(int n_pubs) {
+        this.n_pubs = n_pubs;
     }
 
-    public int getNcitation() {
-        return ncitation;
+    public int getN_citation() {
+        return n_citation;
     }
 
-    public void setNcitation(int ncitation) {
-        this.ncitation = ncitation;
+    public void setN_citation(int n_citation) {
+        this.n_citation = n_citation;
     }
 
-    public int getHindex() {
-        return hindex;
+    public int getH_index() {
+        return h_index;
     }
 
-    public void setHindex(int hindex) {
-        this.hindex = hindex;
+    public void setH_index(int h_index) {
+        this.h_index = h_index;
     }
 
     public Tag[] getTags() {
@@ -134,26 +135,26 @@ public class Expert implements Serializable {
 
     @Override
     public String toString() {
-        return "{\'Expert\':{"
-                + "\'id\':\'"
-                + id + '\''
-                + ",\'name\':\'"
-                + name + '\''
-                + ",\'orgs\':"
-                + Arrays.toString(orgs)
-                + ",\'org\':\'"
-                + org + '\''
-                + ",\'n_pubs\':"
-                + npubs
-                + ",\'n_citation\':"
-                + ncitation
-                + ",\'h_index\':"
-                + hindex
-                + ",\'tags\':"
+        return "{"
+                + "\"id\":\""
+                + id + '\"'
+                + ",\"name\":\""
+                + name + '\"'
+                + ",\"orgs\":"
+                + JSON.toJSONString(orgs)
+                + ",\"org\":\""
+                + org + '\"'
+                + ",\"n_pubs\":"
+                + n_pubs
+                + ",\"n_citation\":"
+                + n_citation
+                + ",\"h_index\":"
+                + h_index
+                + ",\"tags\":"
                 + Arrays.toString(tags)
-                + ",\'pubs\':"
+                + ",\"pubs\":"
                 + Arrays.toString(pubs)
-                + "}}";
+                + "}";
 
     }
 }

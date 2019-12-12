@@ -53,7 +53,7 @@ public class ExpertController {
             } else {
                 params.put("success", true);
                 System.out.println(expert);
-                params.put("content", expert);
+                params.put("content", JSONObject.parseObject(expert.toString()));
             }
         } catch (Exception e) {
             params.put("success", false);
@@ -61,8 +61,7 @@ public class ExpertController {
             content.put("error_code", 0);
             params.put("content", content);
         }
-
-        return JSONObject.toJSONString(params);
+        return JSON.toJSONString(params);
     }
 
 
@@ -80,8 +79,6 @@ public class ExpertController {
         try {
             if (domain == null) domain = "name";
             if (sort == null) sort = "name";
-
-
             Sort.Order order = new Sort.Order(Sort.Direction.DESC, sort);
             if (!direction)
                 order = new Sort.Order(Sort.Direction.ASC, sort);
@@ -118,8 +115,8 @@ public class ExpertController {
                 params.put("success", true);
                 Map<String, Object> content = new HashMap<>();
                 content.put("total", count);
-                content.put("papers", experts);
-                params.put("content", content);
+                content.put("experts", experts);
+                params.put("content", JSONObject.parseObject(content.toString().replace('=',':')));
             }
         } catch (Exception e) {
             System.out.println("ERROR! " + e.getMessage());
@@ -128,9 +125,7 @@ public class ExpertController {
             content.put("error_code", 0);
             params.put("content", content);
         }
-
-
-        return JSONObject.toJSONString(params);
+        return JSON.toJSONString(params);
     }
 
 
