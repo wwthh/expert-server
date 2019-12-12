@@ -17,10 +17,6 @@ public interface ExpertRepository extends MongoRepository<Expert, String> {
 
     int countByNameLike(String key);
 
-    Page<Expert> findByNormalizednameLike(String key, PageRequest pageable);
-
-    int countByNormalizednameLike(String key);
-
     Page<Expert> findByOrgLike(String key, PageRequest pageable);
 
     int countByOrgLike(String key);

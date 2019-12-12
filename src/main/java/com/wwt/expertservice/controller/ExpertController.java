@@ -14,10 +14,11 @@ import java.util.*;
 @RestController
 public class ExpertController {
 
+
     @Autowired
     private ExpertRepository expertRepository;
 
-    @PostMapping( "/experts")
+    @PostMapping("/experts")
     public String insertExpert(@RequestBody String requestbody) {
         System.out.println("insertExpert");
         Map<String, Object> params = new HashMap<>();
@@ -77,7 +78,7 @@ public class ExpertController {
         System.out.println("getExpertByPage");
         Map<String, Object> params = new HashMap<>();
         try {
-            if (domain == null) domain = "normalizedname";
+            if (domain == null) domain = "name";
             if (sort == null) sort = "name";
 
 
@@ -91,10 +92,6 @@ public class ExpertController {
                 case "name":
                     experts = expertRepository.findByNameLike(key, pageable).getContent();
                     count = expertRepository.countByNameLike(key);
-                    break;
-                case "normalizedname":
-                    experts = expertRepository.findByNormalizednameLike(key, pageable).getContent();
-                    count = expertRepository.countByNormalizednameLike(key);
                     break;
                 case "org":
                     experts = expertRepository.findByOrgLike(key, pageable).getContent();

@@ -39,17 +39,14 @@ class Pub{
 @Document("Expert")
 public class Expert implements Serializable {
     @Id
+    @Field("id")
     private String id;
     @Field("name")
     private String name;
-    @Field("normalized_name")
-    private String normalizedname;
     @Field("orgs")
     private String[] orgs;
     @Field("org")
     private String org;
-    @Field("position")
-    private String position;
     @Field("n_pubs")
     private int npubs;
     @Field("n_citation")
@@ -78,13 +75,6 @@ public class Expert implements Serializable {
         this.name = name;
     }
 
-    public String getNormalizedname() {
-        return normalizedname;
-    }
-
-    public void setNormalizedname(String normalizedname) {
-        this.normalizedname = normalizedname;
-    }
 
     public String[] getOrgs() {
         return orgs;
@@ -100,14 +90,6 @@ public class Expert implements Serializable {
 
     public void setOrg(String org) {
         this.org = org;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 
     public int getNpubs() {
@@ -157,14 +139,10 @@ public class Expert implements Serializable {
                 + id + '\''
                 + ",\'name\':\'"
                 + name + '\''
-                + ",\'normalized_name\':\'"
-                + normalizedname + '\''
                 + ",\'orgs\':"
                 + Arrays.toString(orgs)
                 + ",\'org\':\'"
                 + org + '\''
-                + ",\'position\':\'"
-                + position + '\''
                 + ",\'n_pubs\':"
                 + npubs
                 + ",\'n_citation\':"
