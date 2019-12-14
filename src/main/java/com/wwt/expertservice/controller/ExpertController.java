@@ -27,7 +27,7 @@ public class ExpertController {
             Expert expert = JSON.toJavaObject(obj, Expert.class);
             expertRepository.insert(expert);
             params.put("success", true);
-            params.put("content", expert);
+            params.put("content", JSONObject.parseObject(expert.toString()));
         } catch (Exception e) {
             System.out.println("ERROR" + e.getMessage());
             params.put("success", false);
@@ -129,4 +129,32 @@ public class ExpertController {
     }
 
 
+    @GetMapping("/experts/certificateExpert/{_id}")
+    public Map<String, Object> CertificateExpert(@PathVariable(required = true) String _id, @RequestParam(name = "token", required = false) String token) {
+        System.out.println("GetExpertById" + _id);
+        Map<String, Object> params = new HashMap<>();
+        try {
+            Optional<Expert> Oexpert = expertRepository.findById(_id);
+            Expert expert = Oexpert.get();
+            if (!Oexpert.isPresent()) {
+                params.put("success", false);
+                Map<String, Integer> content = new HashMap<>();
+                content.put("error_code", -1);
+                params.put("content", content.toString());
+            } else {
+                params.put("success", true);
+                expert.setCertification(true);
+                expertRepository.save(expert);
+                System.out.println(expert);
+                params.put("content", JSONObject.parseObject(expert.toString()));
+            }
+        } catch (Exception e) {
+            params.put("success", false);
+            Map<String, Integer> content = new HashMap<>();
+            content.put("error_code", 0);
+            params.put("content", content);
+        }
+        return params;
+
+    }
 }

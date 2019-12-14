@@ -58,8 +58,19 @@ public class Expert implements Serializable {
     private Tag[] tags;
     @Field("pubs")
     private Pub[] pubs;
+    @Field("isCertification")
+    private boolean isCertification;
 
-    
+
+
+    public boolean isCertification() {
+        return isCertification;
+    }
+
+    public void setCertification(boolean certification) {
+        isCertification = certification;
+    }
+
     public String getId() {
         return id;
     }
@@ -154,6 +165,8 @@ public class Expert implements Serializable {
                 + Arrays.toString(tags)
                 + ",\"pubs\":"
                 + Arrays.toString(pubs)
+                + ",\"isCertification\":"
+                + isCertification
                 + "}";
 
     }
