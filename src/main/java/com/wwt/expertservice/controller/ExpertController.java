@@ -19,7 +19,7 @@ public class ExpertController {
     private ExpertRepository expertRepository;
 
     @PostMapping("/experts")
-    public String insertExpert(@RequestBody String requestbody) {
+    public Map<String, Object> insertExpert(@RequestBody String requestbody) {
         System.out.println("insertExpert");
         Map<String, Object> params = new HashMap<>();
         try {
@@ -35,11 +35,11 @@ public class ExpertController {
             content.put("error_code", 0);
             params.put("content", content);
         }
-        return JSONObject.toJSONString(params);
+        return params;
     }
 
     @GetMapping("/experts/{_id}")
-    public String getExpertById(@PathVariable(required = true) String _id, @RequestParam(name = "token", required = true) String token) {
+    public Map<String, Object> getExpertById(@PathVariable(required = true) String _id, @RequestParam(name = "token", required = false) String token) {
         System.out.println("GetExpertById" + _id);
         Map<String, Object> params = new HashMap<>();
         try {
@@ -61,12 +61,12 @@ public class ExpertController {
             content.put("error_code", 0);
             params.put("content", content);
         }
-        return JSON.toJSONString(params);
+        return params;
     }
 
 
     @GetMapping("/experts")
-    public String getExpertByPage(@RequestParam(name = "size", required = true) int size,// 每页数量
+    public Map<String, Object> getExpertByPage(@RequestParam(name = "size", required = true) int size,// 每页数量
                                   @RequestParam(name = "page", required = true) int page, // 第几页
                                   @RequestParam(name = "domain", required = false) String domain, // 搜索字段 i.e. name
                                   @RequestParam(name = "key", required = true) String key, // 搜索key
@@ -101,7 +101,7 @@ public class ExpertController {
                     Map<String, Integer> content = new HashMap<>();
                     content.put("error_code", 2);
                     params.put("content", content);
-                    return JSONObject.toJSONString(params);
+                    return params;
             }
             assert experts != null;
             if (experts.isEmpty()) {
@@ -125,7 +125,7 @@ public class ExpertController {
             content.put("error_code", 0);
             params.put("content", content);
         }
-        return JSON.toJSONString(params);
+        return params;
     }
 
 

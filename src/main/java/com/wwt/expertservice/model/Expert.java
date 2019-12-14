@@ -40,7 +40,7 @@ class Pub{
 @Document("Expert")
 public class Expert implements Serializable {
     @Id
-    @Field("id")
+    @Field("_id")
     private String id;
     @Field("name")
     private String name;
