@@ -17,7 +17,11 @@ public class ExpertController {
 
     @Autowired
     private ExpertRepository expertRepository;
-
+    public static String getUUID(){
+        String s = UUID.randomUUID().toString();
+        //去掉“-”符号
+        return s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+    }
     @PostMapping("/experts")
     public Map<String, Object> insertExpert(@RequestBody String requestbody) {
         System.out.println("insertExpert");
@@ -25,9 +29,9 @@ public class ExpertController {
         try {
             JSONObject obj = JSON.parseObject(requestbody);
             Expert expert = JSON.toJavaObject(obj, Expert.class);
-            System.out.println("insertExpert Success" + expert);
+            String s = getUUID();
+            expert.setId(s);
             Expert newExpert = expertRepository.insert(expert);
-            expertRepository.save(newExpert);
             System.out.println("insertExpert Success" + newExpert);
             params.put("success", true);
             params.put("content", JSONObject.parseObject(newExpert.toString()));
