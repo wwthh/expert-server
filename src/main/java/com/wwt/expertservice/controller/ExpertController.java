@@ -25,9 +25,9 @@ public class ExpertController {
         try {
             JSONObject obj = JSON.parseObject(requestbody);
             Expert expert = JSON.toJavaObject(obj, Expert.class);
-            expertRepository.insert(expert);
+            Expert newExpert = expertRepository.insert(expert);
             params.put("success", true);
-            params.put("content", JSONObject.parseObject(expert.toString()));
+            params.put("content", JSONObject.parseObject(newExpert.toString()));
         } catch (Exception e) {
             System.out.println("ERROR" + e.getMessage());
             params.put("success", false);
