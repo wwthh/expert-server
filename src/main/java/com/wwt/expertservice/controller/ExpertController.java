@@ -25,7 +25,6 @@ public class ExpertController {
         try {
             JSONObject obj = JSON.parseObject(requestbody);
             Expert expert = JSON.toJavaObject(obj, Expert.class);
-            expert.setCertification(true);
             expertRepository.insert(expert);
             params.put("success", true);
             params.put("content", JSONObject.parseObject(expert.toString()));
@@ -131,7 +130,8 @@ public class ExpertController {
 
 
     @GetMapping("/experts/certificateExpert/{_id}")
-    public Map<String, Object> CertificateExpert(@PathVariable(required = true) String _id) {
+    public Map<String, Object> CertificateExpert(@PathVariable(required = true) String _id
+                                                    ,@RequestParam(name = "userid", required = true) String userid) {
         System.out.println("GetExpertById" + _id);
         Map<String, Object> params = new HashMap<>();
         try {
@@ -144,7 +144,7 @@ public class ExpertController {
                 params.put("content", content.toString());
             } else {
                 params.put("success", true);
-                expert.setCertification(true);
+                expert.setCertification(userid);
                 expertRepository.save(expert);
                 System.out.println(expert);
                 params.put("content", JSONObject.parseObject(expert.toString()));

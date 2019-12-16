@@ -59,15 +59,15 @@ public class Expert implements Serializable {
     @Field("pubs")
     private Pub[] pubs;
     @Field("isCertification")
-    private boolean isCertification;
+    private String isCertification;
 
 
 
-    public boolean isCertification() {
+    public String isCertification() {
         return isCertification;
     }
 
-    public void setCertification(boolean certification) {
+    public void setCertification(String certification) {
         isCertification = certification;
     }
 
