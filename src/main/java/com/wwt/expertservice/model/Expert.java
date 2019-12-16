@@ -21,6 +21,22 @@ class Tag{
                 + "}";
 
     }
+
+    public String getT() {
+        return t;
+    }
+
+    public void setT(String t) {
+        this.t = t;
+    }
+
+    public int getW() {
+        return w;
+    }
+
+    public void setW(int w) {
+        this.w = w;
+    }
 }
 class Pub{
     String i;
@@ -35,6 +51,22 @@ class Pub{
                 + r
                 + "}";
 
+    }
+
+    public String getI() {
+        return i;
+    }
+
+    public void setI(String i) {
+        this.i = i;
+    }
+
+    public int getR() {
+        return r;
+    }
+
+    public void setR(int r) {
+        this.r = r;
     }
 }
 @Document("Expert")
@@ -63,11 +95,11 @@ public class Expert implements Serializable {
 
 
 
-    public String isCertification() {
+    public String getIsCertification() {
         return isCertification;
     }
 
-    public void setCertification(String certification) {
+    public void setIsCertification(String certification) {
         isCertification = certification;
     }
 
@@ -165,8 +197,8 @@ public class Expert implements Serializable {
                 + Arrays.toString(tags)
                 + ",\"pubs\":"
                 + Arrays.toString(pubs)
-                + ",\"isCertification\":"
-                + isCertification
+                + ",\"isCertification\":\""
+                + isCertification+'\"'
                 + "}";
 
     }

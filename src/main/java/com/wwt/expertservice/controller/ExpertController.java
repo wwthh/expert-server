@@ -25,7 +25,10 @@ public class ExpertController {
         try {
             JSONObject obj = JSON.parseObject(requestbody);
             Expert expert = JSON.toJavaObject(obj, Expert.class);
+            System.out.println("insertExpert Success" + expert);
             Expert newExpert = expertRepository.insert(expert);
+            expertRepository.save(newExpert);
+            System.out.println("insertExpert Success" + newExpert);
             params.put("success", true);
             params.put("content", JSONObject.parseObject(newExpert.toString()));
         } catch (Exception e) {
@@ -44,18 +47,20 @@ public class ExpertController {
         Map<String, Object> params = new HashMap<>();
         try {
             Optional<Expert> Oexpert = expertRepository.findById(_id);
-            Expert expert = Oexpert.get();
             if (!Oexpert.isPresent()) {
+                System.out.println("get no value " + _id);
                 params.put("success", false);
                 Map<String, Integer> content = new HashMap<>();
                 content.put("error_code", -1);
-                params.put("content", content.toString());
+                params.put("content", content);
             } else {
+                Expert expert = Oexpert.get();
                 params.put("success", true);
                 System.out.println(expert);
                 params.put("content", JSONObject.parseObject(expert.toString()));
             }
         } catch (Exception e) {
+            System.out.println("ERROR" + e.getMessage());
             params.put("success", false);
             Map<String, Integer> content = new HashMap<>();
             content.put("error_code", 0);
@@ -136,20 +141,21 @@ public class ExpertController {
         Map<String, Object> params = new HashMap<>();
         try {
             Optional<Expert> Oexpert = expertRepository.findById(_id);
-            Expert expert = Oexpert.get();
             if (!Oexpert.isPresent()) {
                 params.put("success", false);
                 Map<String, Integer> content = new HashMap<>();
                 content.put("error_code", -1);
                 params.put("content", content.toString());
             } else {
+                Expert expert = Oexpert.get();
                 params.put("success", true);
-                expert.setCertification(userid);
+                expert.setIsCertification(userid);
                 expertRepository.save(expert);
                 System.out.println(expert);
                 params.put("content", JSONObject.parseObject(expert.toString()));
             }
         } catch (Exception e) {
+            System.out.println("ERROR! " + e.getMessage());
             params.put("success", false);
             Map<String, Integer> content = new HashMap<>();
             content.put("error_code", 0);
